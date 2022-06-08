@@ -59,23 +59,21 @@ namespace Tree._1.BinaryTreeSymmetric
             if (rootLeft == null || rootRight == null)
                 return true;
 
-
             if (rootLeft != null || rootRight != null)
             {
                 return rootLeft.Val == rootRight.Val &&
                 checkSimillar(rootLeft.Left, rootRight.Right) &&
                 checkSimillar(rootLeft.Right, rootRight.Left);
             }
-              
 
             return false;
         }
 
         //public isSymmetricIterative(TreeNode rootLeft, TreeNode rootRight)
-        {
+        //{
 
 
-        }
+        //}
     }
 
 
