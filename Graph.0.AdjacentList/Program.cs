@@ -19,6 +19,10 @@ namespace Graph._0.AdjacentList
 
             graphTest.printGraph();
 
+            graphTest.BFS(4,0);
+
+
+            Console.ReadLine();
         }
 
         /*
@@ -32,7 +36,7 @@ namespace Graph._0.AdjacentList
             3 | 1
          */
 
-        public class GraphUndirected
+        public class GraphUndirected:IComparable<int>
         {
             public List<List<int>> adjacencyList;
 
@@ -49,7 +53,7 @@ namespace Graph._0.AdjacentList
             {
                 this.adjacencyList[u].Add(v);
                 this.adjacencyList[v].Add(u);
-            }
+            }   
             public void printGraph()
             {
                 for(int i = 0; i<adjacencyList.Count;i++)
@@ -61,7 +65,44 @@ namespace Graph._0.AdjacentList
                     }
                     Console.WriteLine("\n");
                 }
-                Console.ReadLine();
+            }
+
+            public void BFS( int numVertices, int sourceRoot)
+            {
+                ///queue for BFS and peek print dequeue and enqueue children
+
+                // array to keep track of visited vertices default false
+                bool[] visitedVertices = new bool[numVertices+1];
+                Queue<int> queueVertices = new Queue<int>();
+
+                visitedVertices[sourceRoot] = true;
+                queueVertices.Enqueue(sourceRoot);
+
+                Console.WriteLine("BFS ");
+
+                //enqueue all children
+                while (queueVertices.Count > 0)
+                {
+                    int current = queueVertices.Dequeue();
+                    Console.Write(current.ToString()+' ');
+
+                    foreach(int vertex in this.adjacencyList[current])
+                    {
+                        if (visitedVertices[vertex] == false)
+                        {
+                            visitedVertices[vertex] = true;
+                            queueVertices.Enqueue(vertex);
+                        }
+                    }
+
+                }
+
+
+            }
+
+            public int CompareTo(int other)
+            {
+                throw new NotImplementedException();
             }
         }
 
